@@ -1,0 +1,8 @@
+- name: "Playbook test 1 - Output of ls"
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: "Execute a ls -lrt command"
+      shell: "ls -lrt"
+      register: "output"
+    - debug: var=output.stdout_lines
