@@ -1,8 +1,10 @@
-- name: "Playbook test 1 - Output of ls"
+- name: "Playbook test 2 - touch file"
   hosts: localhost
   connection: local
   tasks:
-    - name: "Execute a ls -lrt command"
-      shell: "ls -lrt"
-      register: "output"
-    - debug: var=output.stdout_lines
+  - name: Ansible create file with content 
+    copy:
+      dest: "/tmp/jpruitt-user-data-ssm-ansible.txt"
+      content: |
+        jpruitt
+        this file is used to test user data calling SSM to apply anisble playbook
