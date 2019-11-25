@@ -1,0 +1,28 @@
+- name: Install, configure, and start nginx
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Install nginx
+    apt:
+      name: nginx
+      state: present
+  #- name: Create index.html
+  #  template:
+  #    src: index.html.tpl
+  #    dest: /var/www/html/index.html
+  #  notify: Restart nginx
+  #- name: Setup nginx conf
+  #  template:
+  #    src: nginx.conf.tpl
+  #    dest: /etc/nginx/nginx.conf
+  - name: Start nginx
+    service:
+      name: nginx
+      state: started
+      enabled: yes
+  handlers:
+  - name: Restart nginx
+    service:
+      name: nginx
+      state: restarted
+      enabled: yes
